@@ -29,8 +29,27 @@ class ShoppingList extends Component {
                         }
                     }}
                 >Add Item</Button>
+
+                <ListGroup>
+                    {items.map(({id, name}) => (
+                        <ListGroupItem key={id}>
+                            <Button
+                                className="remove-btn"
+                                color="danger"
+                                size="sm"
+                                onClick={() => {
+                                    this.setState( state => ({
+                                        items: state.items.filter(item => item.id !== id)
+                                    }));
+                                }}
+                            >Delete</Button>
+                            {name}
+                        </ListGroupItem>
+                    ))}
+                </ListGroup>
+
             </Container>
-        )
+        );
     }
 }
 
